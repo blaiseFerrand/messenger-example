@@ -2,7 +2,7 @@
 var app = angular.module('messenger', []);
 
 app.controller('MainCtrl', [
-  // $scope allows datat sharing with
+  // $scope allows datat sharing with .html
   '$scope',
 
   function($scope){
@@ -30,8 +30,13 @@ app.controller('MainCtrl', [
 
     $scope.addPost = function() {
       if(!$scope.title || $scope.title === '') {return;}
-      $scope.posts2.push({title: $scope.title, upvotes: 0});
+      // pulls from model in input field
+      $scope.posts2.push({
+        title: $scope.title,
+        link: $scope.link,
+        upvotes: 0});
       $scope.title = '';
+      $scope.link = '';
     };
 
     $scope.incrementUpvotes = function(post) {
