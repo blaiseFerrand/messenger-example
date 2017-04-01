@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>Messaging App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  <body ng-app="messenger" ng-controller="MainCtrl">
+    <div>
+      <!-- {{}} Angularjs variable notation
+              this is angularjs two way data biding -->
+      {{test}}
+    </div>
+    <div ng-repeat="post in posts">
+      {{post}}
+    </div>
+    <div ng-repeat="post in posts2">
+      {{post.title}} - upvotes: {{post.upvotes}}
+    </div>
+  </body>
+</html>
