@@ -1,57 +1,110 @@
 <html>
   <head>
     <title>Messaging App</title>
-        
+
+    <!-- use twitter type stylesheet -->
+    <!-- made use of Bootstrap's grid system to align -->
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="app.js"></script>
+    <style> .glyphicon-thumbs-up {cursor:pointer} </style>
   </head>
   <body ng-app="messenger" ng-controller="MainCtrl">
-    <div>
+    <!-- basic formatting -->
+    <!-- <div> -->
       <!-- {{}} Angularjs variable notation
               this is angularjs two way data biding -->
-      {{test}}
-
-    </div>
-    <p> ---------- </p>
-    <div ng-repeat="post in posts">
+      <!-- {{test}} -->
+    <!-- </div> -->
+    <!-- <div ng-repeat="post in posts">
       {{post}}
-    </div>
-    <p> ---------- </p>
+    </div> -->
+
+
+    <!-- advanced formatting -->
+    <div class = "row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="page-header">
+          <h1>Messenger</h1>
+        </div>
+
     <!-- <div ng-repeat="post in posts2 | orderBy: '-upvotes'">
       {{post.title}} - upvotes: {{post.upvotes}}
     </div> -->
 
-    <div ng-repeat="post in posts2 | orderBy:'-upvotes'">
-      <span ng-clink="incrementUpvotes(post)">^</span>
+      <!-- basic formatting -->
+      <!-- <div ng-repeat="post in posts2 | orderBy:'-upvotes'"> -->
+      <!-- <span ng-clink="incrementUpvotes(post)">^</span> -->
       <!-- check existance of link
           show and hide
           "a" tag
           only show if a link
         -->
-      <a ng-show="post.link" href="{{post.link}}">
+      <!-- <a ng-show="post.link" href="{{post.link}}">
         {{post.link}}
       </a>
       <span ng-hide="post.link">
         {{post.title}}
       </span>
-      - upvotes: {{post.upvotes}}
+      - upvotes: {{post.upvotes}} -->
+      <!-- <div ng-repeat="post in posts2 | orderBy: '-upvotes'">
+        <span ng-click="incrementUpvotes(post)">^</span>
+        {{post.title}} - upvotes: {{post.upvotes}}
+      </div> -->
+      <!-- <br> -->
+      <!-- <div>
+        allow invocation of functions in app.js
+        <button ng-click="addPost()">Post</button>
+      </div> -->
+      <!-- <form ng-submit="addPost()"> -->
+        <!-- bind to model called title (i.e. like a property)-->
+        <!-- <input type="text" placeholder="Title" ng-model="title"></input>
+
+        <input type="text" placeholder="Link" ng-model="link"></input>
+
+        <button type="submit">Post</button>
+      </form> -->
+
+
+      <!-- advanced formatting -->
+      <div ng-repeat="post in posts | orderBy:'-upvotes'">
+        <span class="glyphicon glyphicon-thumbs-up"
+          ng-click="incrementUpvotes(post)"></span>
+          {{post.upvotes}}
+          <span style="font-size:20px; margin-left:10px;">
+            <a ng-show="post.link" href="{{post.link}}">
+              {{post.link}}
+              <!-- <br> -->
+            </a>
+            <span ng-hide="post-link">
+              {{post.title}}
+            </span>
+          </span>
+        </div>
+
+        <form ng-submit="addPost()" style="margin-top:30px;">
+          <h3>Add a new post</h3>
+
+          <div class="form-group">
+            <input type="text"
+              class="form-control"
+              placeholder="Title"
+              ng-model="title">
+            </input>
+          </div>
+
+          <div class="form-group">
+            <input type="text"
+              class="form-control"
+              placeholder="Link"
+              ng-model="link">
+            </input>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+      </div>
     </div>
-    <!-- <div ng-repeat="post in posts2 | orderBy: '-upvotes'">
-      <span ng-click="incrementUpvotes(post)">^</span>
-      {{post.title}} - upvotes: {{post.upvotes}}
-    </div> -->
-    <p> ---------- </p>
-    <!-- <div>
-      allow invocation of functions in app.js
-      <button ng-click="addPost()">Post</button>
-    </div> -->
-    <form ng-submit="addPost()">
-      <!-- bind to model called title (i.e. like a property)-->
-      <input type="text" placeholder="Title" ng-model="title"></input>
-
-      <input type="text" placeholder="Link" ng-model="link"></input>
-
-      <button type="submit">Post</button>
-    </form>
   </body>
 </html>

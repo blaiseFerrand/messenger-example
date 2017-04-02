@@ -1,14 +1,24 @@
 
 var app = angular.module('messenger', []);
 
+app.factory('posts', [function(){
+  var o = {
+    posts:[]
+  };
+  return o;
+}])
+
 app.controller('MainCtrl', [
-  // $scope allows datat sharing with .html
+  // $scope allows data sharing with index.html
   '$scope',
 
-  function($scope){
+  // adding factory stuff
+  'posts',
+
+  function($scope, posts){
     $scope.test = 'Hello World';
 
-    $scope.posts = [
+    $scope.postsA = [
       'post 1',
       'post 2',
       'post 3',
@@ -24,14 +34,19 @@ app.controller('MainCtrl', [
       {title:'post 5', upvotes: 4}
     ];
 
+    // using factory instead
+    $scope.posts = posts.posts;
+
     $scope.addPost = function() {
-      $scope.posts2.push({title: 'a new post', upvotes: 1});
+      // $scope.posts.push({title: 'a new post', upvotes: 1});
+      $scope.posts.push({title: 'a new post', upvotes: 1});
     };
 
     $scope.addPost = function() {
       if(!$scope.title || $scope.title === '') {return;}
       // pulls from model in input field
-      $scope.posts2.push({
+      // $scope.posts2.push({
+      $scope.posts.push({
         title: $scope.title,
         link: $scope.link,
         upvotes: 0});
